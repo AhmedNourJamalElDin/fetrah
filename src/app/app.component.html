@@ -1,3 +1,101 @@
-<div>
-  <canvas #canvas></canvas>
+<div class="px-24 bg-zinc-200">
+  <form [formGroup]="form" class="grid grid-cols-1 gap-5 p-5">
+    <div class="m-auto text-slate-500 text-sm font-bold text-center">
+      <p dir="rtl">
+        أضف إطار <a class="text-blue-600 underline" href="https://facebook.com/fetrah.org" target="_blank">فِطرة</a> إلى
+        صورك!
+      </p>
+      <p>
+        Add <a class="text-blue-600 underline" href="https://facebook.com/fetrah.org" target="_blank">Fetrah</a> Frame
+        To
+        Your Photos!
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-16">
+      <div class="grid grid-cols-1 gap-5">
+        <div>
+
+          <label
+            class="block uppercase text-slate-600 text-xs font-bold mb-2"
+            for="photo"
+          >
+            Your Photo
+          </label>
+
+          <input
+            (change)="getFile($event)"
+            accept="image/jpeg,image/png"
+            class="block w-full text-sm text-slate-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-violet-50 file:text-violet-700
+      hover:file:bg-violet-100
+      hover:cursor-pointer
+      hover:file:cursor-pointer
+    "
+            id="photo"
+            type="file"/>
+        </div>
+
+        <div>
+          <label
+            class="block uppercase text-slate-600 text-xs font-bold mb-2"
+            for="opacity"
+          >
+            Opacity
+          </label>
+
+          <input
+            class="
+          border-2 px-3 py-3 mb-1 placeholder-slate-300
+          text-slate-600 bg-white rounded text-sm
+          focus:outline-none focus:ring w-full ease-linear
+          transition-all duration-150
+"
+            formControlName="opacity"
+            id="opacity"
+            step="0.1"
+            type="number"
+          >
+        </div>
+
+      </div>
+
+      <div class="self-end">
+        <button
+          (click)="generate()"
+          [disabled]="form.invalid"
+          class="
+      bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150
+      disabled:bg-slate-400 disabled:transition-none disabled:shadow-transparent disabled:cursor-no-drop
+">
+          Generate
+        </button>
+
+        <button
+          (click)="save()"
+          class="
+      bg-slate-800 text-white active:bg-slate-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150
+      disabled:bg-slate-400 disabled:transition-none disabled:shadow-transparent disabled:cursor-no-drop
+">
+          Download & Save
+        </button>
+      </div>
+
+    </div>
+
+    <div class="m-auto">
+      <canvas
+        #canvas
+        [style.height]="isNotMerged ? 0 : null"
+        [style.width]="isNotMerged ? 0 : null"
+      ></canvas>
+
+      <ng-container *ngIf="isNotMerged">
+        <img height="300" src="assets/fetra.jpg" width="300">
+      </ng-container>
+    </div>
+  </form>
 </div>
