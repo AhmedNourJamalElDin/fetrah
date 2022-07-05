@@ -8,7 +8,7 @@ import {ImageDownloaderService} from "./services/image-downloader.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Fetrah';
+  title = 'Fetrah | فِطرة';
 
   form = new FormGroup({
     file: new FormControl(null, [Validators.required]),
